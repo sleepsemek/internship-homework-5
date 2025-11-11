@@ -110,11 +110,10 @@ textarea {
   color: var(--color-on-primary);
   border: none;
   border-radius: 8px;
-  font-size: 1rem;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition: var(--transition-duration);
-  align-self: flex-start;
 
   &:hover {
     background-color: var(--color-primary-variant);
@@ -144,6 +143,13 @@ textarea {
   }
 }
 
+.task {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  row-gap: 12px;
+}
+
 .tasks__item {
   background-color: var(--color-surface);
   border-radius: 12px;
@@ -152,10 +158,15 @@ textarea {
   transition-duration: var(--transition-duration);
 }
 
-.task {
-  display: grid;
-  grid-template-columns: 1fr;
-  row-gap: 12px;
+.task__title,
+.task__description {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+}
+
+.task__description {
+  flex-grow: 1;
 }
 
 .task--completed {
