@@ -1,13 +1,56 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="styles/style.css">
+  <script src="lib/index.js" type="module" defer></script>
+  <title>Домашняя работа 5</title>
 </head>
 <body>
-    <div class="root">Всем привет</div>
-    <script src="./lib/index.js"></script>
+<main class="content" data-tasks>
+  <h1 class="title">Задачи</h1>
+  <section aria-labelledby="create-task-header" class="section">
+    <h2 id="create-task-header">Создать задачу</h2>
+    <form data-create-task-form class="create-task-form">
+      <label class="create-task-form__label label">
+        Название задачи
+        <input type="text" name="name" class="create-task__form-input input" required>
+      </label>
+
+      <label class="create-task-form__label label">
+        Описание задачи
+        <textarea name="info" class="create-task-form__input input" required></textarea>
+      </label>
+
+      <label class="create-task-form__label label label--inline">
+        <input type="checkbox" name="isImportant" value=true class="create-task-form__input input">
+        Важная?
+      </label>
+
+      <button type="submit" class="create-task-form__button button" data-create-task-form-submit-button>Создать задачу</button>
+    </form>
+  </section>
+  <section aria-labelledby="task-list-header" class="section">
+    <h2 id="task-list-header">Список задач</h2>
+    <div class="filters">
+      <label class="filters__label label label--inline">
+        <input type="text" placeholder="Название задачи" class="filters__input input" data-filter-name>
+        По названию
+      </label>
+      <label class="filters__label label label--inline">
+        <input type="checkbox" class="filters__input input" data-filter-important>
+        Только важные
+      </label>
+      <label class="filters__label label label--inline">
+        <input type="checkbox" class="filters__input input" data-filter-completed>
+        Только выполненные
+      </label>
+    </div>
+    <ul data-tasks-list class="tasks__list"></ul>
+  </section>
+</main>
 </body>
 </html>
