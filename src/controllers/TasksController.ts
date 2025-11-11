@@ -31,8 +31,7 @@ export class TasksController {
     this.importantCheckbox?.addEventListener('change', () => this.handleFiltersChange());
     this.completedCheckbox?.addEventListener('change', () => this.handleFiltersChange());
     this.createTaskForm?.addEventListener('submit', (e) => this.handleFormSubmit(e));
-    this.tasksListElement?.addEventListener('click', (e) => this.handleTaskClickEvent(e));
-    this.tasksListElement?.addEventListener('change', (e) => this.handleTaskChangeEvent(e));
+    this.tasksListElement?.addEventListener('click', (e) => this.handleTaskClick(e));
   }
 
   private async loadTasks(): Promise<void> {
@@ -77,7 +76,7 @@ export class TasksController {
     }
   }
 
-  private async handleTaskClickEvent(event: Event): Promise<void> {
+  private async handleTaskClick(event: Event): Promise<void> {
     const target = event.target as HTMLElement;
     const taskElement = target.closest('[data-task-id]') as HTMLElement;
 
@@ -89,23 +88,19 @@ export class TasksController {
       await this.deleteTask(taskId);
       return;
     }
-  }
-
-  private async handleTaskChangeEvent(event: Event): Promise<void> {
-    const target = event.target as HTMLElement;
-    const taskElement = target.closest('[data-task-id]') as HTMLElement;
-
-    if (!taskElement) return;
-
-    const taskId = Number(taskElement.dataset.taskId);
 
     if (target.matches('[data-important-checkbox]')) {
+      event.preventDefault();
+
       await this.updateTask(taskId, {
         isImportant: (target as HTMLInputElement).checked,
       });
+      return;
     }
 
     if (target.matches('[data-complete-checkbox]')) {
+      event.preventDefault();
+
       await this.updateTask(taskId, {
         isCompleted: (target as HTMLInputElement).checked,
       });
