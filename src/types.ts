@@ -23,6 +23,6 @@ export type ApiError = {
 export function isApiError(responseBody: unknown): responseBody is ApiError {
   if (typeof responseBody !== 'object' || responseBody === null) return false;
 
-  const responseBodyObject = responseBody as Record<string, unknown>;
+  const responseBodyObject = responseBody as Record<string, unknown>; // Можно было безопасно через as any, но тогда начинает жаловаться eslint
   return typeof responseBodyObject.error === 'string';
 }
